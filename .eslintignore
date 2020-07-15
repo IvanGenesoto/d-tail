@@ -1,7 +1,4 @@
-.DS_Store
 node_modules/
-npm-debug.log
-public/.DS_Store
 archive/
 scratchpad
 public/main.js
