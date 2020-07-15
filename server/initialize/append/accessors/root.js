@@ -11,7 +11,7 @@ module.exports = function appendRootAccessors(args) {
     const rootAccessorPrototype = create.accessor.root.prototype({
       _entityRoot, entityRootType, ...args
     })
-    const rootAccessor = create.accessor.root.index(rootAccessorPrototype, ...args)
+    const rootAccessor = create.accessor.root.index(rootAccessorPrototype)
     districtAccessor[entityRootType] = rootAccessor
     return districtAccessor
   }
