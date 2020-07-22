@@ -4,8 +4,8 @@ module.exports = function appendMethods(parent, ...methods) {
 
   function append(parent, methods) {
     Object
-      .entries(methods)
-      .forEach(([methodName, method]) => {
+      .keys(methods)
+      .forEach(methodName => {
         const descriptor = Object.getOwnPropertyDescriptor(methods, methodName)
         return Object.defineProperty(parent, methodName, descriptor)
       })

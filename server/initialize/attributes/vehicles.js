@@ -25,7 +25,7 @@ const vehicleAttributes = {
   armor: [0],
   weight: [0],
   element: ['img'],
-  elementID: [''],
+  elementId: [''],
   src: ['images/vehicles/delorean.png']
 }
 

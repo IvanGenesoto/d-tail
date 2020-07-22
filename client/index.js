@@ -2,15 +2,13 @@ const socket = require('socket.io-client')()
 const client = Object.create(null)
 
 window.createPlayer = name => socket.emit('create_player', name)
-
 window.logIn = token => socket.emit('log_in', token)
-
 window.sendInput = input => socket.emit('input', input)
 
-socket.on('district_id', districtID => {
+socket.on('get_token', () => {
   const token = localStorage.getItem('token')
   if (token) return socket.emit('log_in', token)
-  const name = prompt(`Welcome to Anarch City, District ${districtID}. What's your name?`)
+  const name = prompt(`Welcome! What's your name?`)
   socket.emit('create_player', name)
 })
 
@@ -27,11 +25,11 @@ socket.on('player', (player, isNew) => {
   alert(`${greeting}, ${name}!`)
 })
 
-socket.on('invalid_token', districtID => {
-  const name = prompt(`Welcome to Anarch City, District ${districtID}. What's your name?`)
+socket.on('invalid_token', () => {
+  const name = prompt(`Welcome! What's your name?`)
   socket.emit('create_player', name)
 })
 
-socket.on('player_district_id', districtID => console.log(
-  'Log in to district ' + districtID + '.'
+socket.on('player_district_id', districtId => console.log(
+  'Log in to district ' + districtId + '.'
 ))

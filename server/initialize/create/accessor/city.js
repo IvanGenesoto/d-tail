@@ -5,10 +5,10 @@ module.exports = function createCityAccessor(modules) {
     statusCode: city.statusCode(),
     districtCount: city.districtCount(),
     retrievedDistrictCount: city.retrievedDistrictCount(),
-    districtsByDistrictID: city.districtsByDistrictId(modules),
+    districtsByDistrictId: city.districtsByDistrictId(modules),
     entityCounts: city.entityCounts(),
-    districtIDsByEntityID: city.districtIdsByEntityId(modules),
-    entityCountsByDistrictID: city.entityCountsByDistrictId(),
+    districtIdsByEntityId: city.districtIdsByEntityId(modules),
+    entityCountsByDistrictId: city.entityCountsByDistrictId(),
     modules
   })
 }

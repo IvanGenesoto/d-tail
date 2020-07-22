@@ -1,23 +1,23 @@
 module.exports = function retrieveDistrict(cityAccessor) {
 
-  const {districtCount, retrievedDistrictCount, districtsByDistrictID, modules} = cityAccessor
+  const {districtCount, retrievedDistrictCount, districtsByDistrictId, modules} = cityAccessor
   const {initialize} = modules
 
-  const districtID = retrievedDistrictCount.increment()
-  if (districtID > districtCount.get()) {
+  const districtId = retrievedDistrictCount.increment()
+  if (districtId > districtCount.get()) {
     retrievedDistrictCount.decrement()
     throw new Error('All districts already retrieved')
   }
 
-  let _district = districtsByDistrictID.get(districtID)
-  if (_district && _district.id !== districtID) {
+  let _district = districtsByDistrictId.get(districtId)
+  if (_district && _district.id !== districtId) {
     throw new Error(
-      '_district.id (' + _district.id + ') does not match districtID (' + districtID + ')'
+      '_district.id (' + _district.id + ') does not match districtId (' + districtId + ')'
     )
   }
 
   _district = initialize.append.attributes(_district, initialize.attributes.districts)
-  _district.id = districtID
+  _district.id = districtId
 
   Object
     .entries(_district)

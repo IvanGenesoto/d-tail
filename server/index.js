@@ -10,5 +10,5 @@ const district = initializeDistrict(modules)
 district.initiateDistrict()
 
 io.on('connection', socket => district.handle(socket))
-app.use(express.static(path.join(__dirname, '..', 'public')))
+app.use(express.static(path.join(__dirname, 'public')))
 server.listen(port, () => console.log('Listening on port ' + port))

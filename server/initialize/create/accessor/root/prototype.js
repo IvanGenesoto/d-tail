@@ -7,17 +7,17 @@ module.exports = function createRootAccessorPrototype(args) {
   const _attributes = initialize.attributes[entityRootType]
   _entityRoot = append.attributes(_entityRoot, _attributes)
 
-  const indexesByID = create.indexesById(_entityRoot, entityRootType)
+  const indexesById = create.indexesById(_entityRoot)
   let rootAccessorPrototype = Object.create(null)
   const entityAccessorPrototype = create.accessor.entity.prototype({
-    ...args, _entityRoot, indexesByID
+    ...args, _entityRoot, indexesById
   })
 
   const initiatedMethods = modules.initiate.createMethods.root[entityRootType](
     districtAccessor
   )
   const initializedMethods = create.methods.root({
-    ...args, _entityRoot, indexesByID, entityAccessorPrototype, rootAccessorPrototype
+    ...args, _entityRoot, indexesById, entityAccessorPrototype, rootAccessorPrototype
   })
 
   filter.duplicatePropertyNames(initializedMethods, initiatedMethods)

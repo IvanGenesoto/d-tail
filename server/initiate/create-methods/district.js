@@ -22,17 +22,16 @@ module.exports = function createDistrictMethods(district) {
 
     handle(socket) {
       const {generateToken} = district
-      const {districtID} = players
-      const socketID = socket.id
-      const socketIndex = socketID.slice(-4)
+      const socketId = socket.id
+      const socketIndex = socketId.slice(-4)
       console.log('connected to socket ' + socketIndex)
-      socket.emit('district_id', districtID)
+      socket.emit('get_token')
       let player
       socket.on('create_player', name => {
         if (!name) return socket.emit('invalid_name')
         const name_ = '' + name
         player = players.create()
-        player.socket.set(socketID)
+        player.socket.set(socketId)
         player.token.set(generateToken())
         player.name.set(name_)
         socket.emit(
@@ -42,15 +41,15 @@ module.exports = function createDistrictMethods(district) {
         )
       })
       socket.on('log_in', token => {
-        const {districtID} = players
-        const playerID = players.getIDWithAttribute('token', token)
-        if (!playerID) return socket.emit('invalid_token', districtID)
-        player = players[playerID]
-        const {districtID: playerDistrictID} = player
-        if (playerDistrictID !== districtID) {
-          return socket.emit('player_district_id', playerDistrictID)
+        const {districtId} = players
+        const playerId = players.getIdWithAttribute('token', token)
+        if (!playerId) return socket.emit('invalid_token')
+        player = players[playerId]
+        const {districtId: playerDistrictId} = player
+        if (playerDistrictId !== districtId) {
+          return socket.emit('player_district_id', playerDistrictId)
         }
-        player.socket.set(socketID)
+        player.socket.set(socketId)
         socket.emit(
           'player',
           {token: player.token.get(), name: player.name.get()}

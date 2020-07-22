@@ -9,10 +9,10 @@ module.exports = function filterTypeofDefaultValue(
   }
 
   if (!(
-    typeofDefaultValue === 'number' ||
-    typeofDefaultValue === 'string' ||
-    typeofDefaultValue === 'boolean' ||
-    typeofDefaultValue === object
+    typeofDefaultValue === 'number'
+    || typeofDefaultValue === 'string'
+    || typeofDefaultValue === 'boolean'
+    || typeofDefaultValue === object
   )) {
     throw new Error(
       typeofDefaultValue + ' found in ' + entityType + ' ' + attributeName

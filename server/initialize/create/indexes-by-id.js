@@ -1,9 +1,9 @@
-module.exports = function createIndexesByID(_entityRoot, entityRootType) {
+module.exports = function createIndexesById(_entityRoot) {
 
   return _entityRoot.id.reduce(append, [])
 
-  function append (indexesByID, id, index) {
-    indexesByID[id] = index
-    return indexesByID
+  function append(indexesById, id, index) {
+    indexesById[id] = index
+    return indexesById
   }
 }

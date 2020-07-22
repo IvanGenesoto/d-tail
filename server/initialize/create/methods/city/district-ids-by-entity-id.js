@@ -1,7 +1,7 @@
-module.exports = function createDistrictIDsByEntityID(modules) {
+module.exports = function createDistrictIdsByEntityId(modules) {
   const {filter} = modules.initialize
 
-  const _districtIDsByEntityID = {
+  const _districtIdsByEntityId = {
     players: [0],
     characters: [0],
     vehicles: [0],
@@ -12,15 +12,15 @@ module.exports = function createDistrictIDsByEntityID(modules) {
 
     get(id) {
       const entityType = this.entityType
-      return _districtIDsByEntityID[entityType][id]
+      return _districtIdsByEntityId[entityType][id]
     },
 
     add(id) {
-      const districtID = this.districtID
+      const districtId = this.districtId
       const entityType = this.entityType
       filter.typeofValue(id, 'integer', '', 'id', entityType)
-      filter.typeofValue(districtID, 'integer', '', 'districtID', entityType)
-      _districtIDsByEntityID[entityType][id] = districtID
+      filter.typeofValue(districtId, 'integer', '', 'districtId', entityType)
+      _districtIdsByEntityId[entityType][id] = districtId
     }
   }
 }

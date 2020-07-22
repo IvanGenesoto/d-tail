@@ -1,15 +1,13 @@
 module.exports = function createRootMethods(
   {
     _entityRoot,
-    indexesByID,
+    indexesById,
     entityRootType,
-    district,
-    districtID,
-    getNextID,
+    districtId,
+    getNextId,
     entityAccessorPrototype,
     rootAccessorPrototype,
-    modules,
-    _
+    modules
   }
 ) {
 
@@ -17,7 +15,7 @@ module.exports = function createRootMethods(
 
   return {
 
-    districtID,
+    districtId,
 
     entityType: entityRootType,
 
@@ -26,12 +24,12 @@ module.exports = function createRootMethods(
     },
 
     create() {
-      const id = getNextID.call(this)
+      const id = getNextId.call(this)
       const index = create.entity(id, _entityRoot)
-      indexesByID[id] = index
+      indexesById[id] = index
       const entityAccessor = create.accessor.entity.index(id, entityAccessorPrototype)
       rootAccessorPrototype[id] = entityAccessor
-      _entityRoot.district[index] = districtID
+      _entityRoot.district[index] = districtId
       return entityAccessor
     },
 
@@ -45,12 +43,10 @@ module.exports = function createRootMethods(
       return entities
     },
 
-    getIDWithAttribute(attributeType, value) {
-      debugger
+    getIdWithAttribute(attributeType, value) {
       const _attributeByIndex = _entityRoot[attributeType]
       const _idByIndex = _entityRoot.id
       const index = _attributeByIndex.indexOf(value)
-      console.log({attributeType, value, _entityRoot, _attributeByIndex, _idByIndex, index, id: _idByIndex[index]})
       return _idByIndex[index]
     }
   }

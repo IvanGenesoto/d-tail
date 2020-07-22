@@ -17,8 +17,8 @@ module.exports = function filterTypeofValue(
 
   if (Number.isNaN(value)) {
     throw new TypeError(
-      entityType + ' ' + attributeName + ' must be a ' +
-      typeofDefaultValue + ', not NaN'
+      entityType + ' ' + attributeName + ' must be a '
+      + typeofDefaultValue + ', not NaN'
     )
   }
 
@@ -26,8 +26,8 @@ module.exports = function filterTypeofValue(
 
   if (typeofValue !== typeofDefaultValue) {
     throw new TypeError(
-      entityType + ' ' + attributeName + ' must be a ' +
-      typeofDefaultValue + ', ' + value + ' is a ' + typeofValue
+      entityType + ' ' + attributeName + ' must be a '
+      + typeofDefaultValue + ', ' + value + ' is a ' + typeofValue
     )
   }
 

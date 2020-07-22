@@ -26,7 +26,7 @@ const characterAttributes = {
   speed: [0.1],
   maxSpeed: [0],
   element: ['img'],
-  elementID: [''],
+  elementId: [''],
   src: ['images/characters/man.png']
 }
 

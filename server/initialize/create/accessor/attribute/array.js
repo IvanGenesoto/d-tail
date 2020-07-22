@@ -1,5 +1,5 @@
 module.exports = function createArrayAttributeAccessor({
-  _attribute, attributeName, caller, entityType, indexesByID, typeofDefaultValue, modules
+  _attribute, attributeName, caller, entityType, indexesById, typeofDefaultValue, modules
 }) {
 
   const log = []
@@ -9,7 +9,7 @@ module.exports = function createArrayAttributeAccessor({
   return Object.freeze({
 
     getLength() {
-      const index = indexesByID[caller.id]
+      const index = indexesById[caller.id]
       const values = _attribute[index]
       return values.length
     },
@@ -17,7 +17,7 @@ module.exports = function createArrayAttributeAccessor({
     getAll() {
       const cashe = cashes[casheIndex]
       cashe.length = 0
-      const index = indexesByID[caller.id]
+      const index = indexesById[caller.id]
       const values = _attribute[index]
       values.forEach((value, index) => (cashe[index] = value))
       casheIndex = casheIndex ? 0 : 1
@@ -28,7 +28,7 @@ module.exports = function createArrayAttributeAccessor({
       const {id} = value || {}
       if (id) value = id
       modules.initialize.filter.typeofValue(value, typeofDefaultValue, attributeName, entityType)
-      const index = indexesByID[caller.id]
+      const index = indexesById[caller.id]
       const values = _attribute[index]
       if (typeofDefaultValue === 'integer') {
         const duplicate = values.find(existingValue => existingValue === value)
@@ -50,7 +50,7 @@ module.exports = function createArrayAttributeAccessor({
     remove(value) {
       const {id} = value || {}
       if (id) value = id
-      const index = indexesByID[caller.id]
+      const index = indexesById[caller.id]
       const values = _attribute[index]
       const match = values.indexOf(value)
       if (match === -1) return value
@@ -68,7 +68,7 @@ module.exports = function createArrayAttributeAccessor({
     },
 
     removeAll() {
-      const index = indexesByID[caller.id]
+      const index = indexesById[caller.id]
       const values = _attribute[index]
       if (!values.length) return true
       values.length = 0

@@ -1,6 +1,6 @@
-module.exports = function createEntityCountsByDistrictID() {
+module.exports = function createEntityCountsByDistrictId() {
 
-  const _entityCountsByDistrictID = {
+  const _entityCountsByDistrictId = {
     players: [0],
     characters: [0],
     vehicles: [0],
@@ -11,17 +11,17 @@ module.exports = function createEntityCountsByDistrictID() {
 
     get() {
       const entityType = this.entityType
-      const districtID = this.districtID
-      return _entityCountsByDistrictID[entityType][districtID]
+      const districtId = this.districtId
+      return _entityCountsByDistrictId[entityType][districtId]
     },
 
     increment() {
       const entityType = this.entityType
-      const districtID = this.districtID
-      if (!_entityCountsByDistrictID[entityType][districtID]) {
-        _entityCountsByDistrictID[entityType][districtID] = 0
+      const districtId = this.districtId
+      if (!_entityCountsByDistrictId[entityType][districtId]) {
+        _entityCountsByDistrictId[entityType][districtId] = 0
       }
-      return ++_entityCountsByDistrictID[entityType][districtID]
+      return ++_entityCountsByDistrictId[entityType][districtId]
     }
   }
 }

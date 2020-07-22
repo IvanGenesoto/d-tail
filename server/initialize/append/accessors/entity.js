@@ -4,7 +4,7 @@ module.exports = function appendEntityAccessors({
 
   return _entityRoot.id.reduce(append, rootAccessorPrototype)
 
-  function append(rootAccessorPrototype, id, index) {
+  function append(rootAccessorPrototype, id) {
     if (!id) return rootAccessorPrototype
     const entityAccessor = createEntityAccessor(id, entityAccessorPrototype)
     rootAccessorPrototype[id] = entityAccessor

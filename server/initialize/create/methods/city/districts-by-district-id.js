@@ -1,17 +1,17 @@
-module.exports = function createDistrictsByDistrictID(modules) {
+module.exports = function createDistrictsByDistrictId(modules) {
   const {filter} = modules.initialize
 
-  const _districtsByDistrictID = [0]
+  const _districtsByDistrictId = [0]
 
   return {
 
-    get: (districtID) => _districtsByDistrictID[districtID],
+    get: (districtId) => _districtsByDistrictId[districtId],
 
     add(district) {
-      const districtID = this.id // #debug: district.id ??
-      filter.typeofValue(districtID, 'integer', '', 'id', 'district')
+      const districtId = this.id // #debug: district.id ??
+      filter.typeofValue(districtId, 'integer', '', 'id', 'district')
       filter.typeofValue(district, false, 'object', '', 'district')
-      _districtsByDistrictID[districtID] = district
+      _districtsByDistrictId[districtId] = district
     }
   }
 }

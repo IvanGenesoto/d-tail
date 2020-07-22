@@ -1,0 +1,8 @@
+ignores: [
+  "express",
+  "performance-now",
+  "socket.io",
+  "htmlhint",
+  "stylelint",
+  "stylelint-config-standard"
+]
